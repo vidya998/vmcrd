@@ -1,8 +1,31 @@
 # vmoperator
-// TODO(user): Add simple overview of use/purpose
+ Kubernetes controller based on a simple CRD which will deploy an ec2 instance in AWS cloud and manage its lifecycle.
 
 ## Description
-// TODO(user): An in-depth paragraph about your project and overview of use
+ This project presents a simple CRD (Custom Resource Definition) for creating EC2 instances in the AWS cloud, accompanied by a controller with reconciliation logic. The controller ensures that the desired number of instances is maintained, spinning up new instances when the current replicas fall below the desired count and deleting extra instances when there are more replicas than desire 
+
+## Specifications
+- CPU: Specifies the CPU configuration.
+- Memory: Defines memory requirements.
+- Template: Describes the instance template.
+- Replicas: Sets the number of replicas.
+- Host OS: Specifies the operating system.
+- Machine Type: Defines the machine type.
+- Region: Specifies the AWS region.
+- Instance Name: Provides a unique name for the instance.
+## Statuses
+- InstanceID: Unique identifier for each instance.
+- IsRunningPhase: Indicates if the instance is running.
+- IsPendingPhase: Indicates if the instance creation is pending.
+- IsErrorPhase: Indicates if there's an error with the instance.
+- CurrentReplicas: Number of currently running instances.
+- DesiredReplicas: Number of instances desired.
+## Deployment
+The controller is deployed in a local-cluster using Minikube. A Docker image is created and pushed to Docker Hub for accessibility.
+[Docker Hub Link](https://hub.docker.com/layers/ividyaverma998/vmoperator/v2/images/sha256:ef0404c5caf4aa4a59c00108a734182d0a3e848518d299abc0719bab82511676?uuid=eb63b97a-bb21-4204-8562-242beb0d33f8%0A)
+
+## Helmfile
+A Helmfile is included with all specifications required for creating the resource. The controller listens for any resource creation events of kind VirtualMachine.
 
 ## Getting Started
 
@@ -16,7 +39,7 @@
 **Build and push your image to the location specified by `IMG`:**
 
 ```sh
-make docker-build docker-push IMG=<some-registry>/vmoperator:tag
+make docker-build docker-push IMG=docker.io/ividyaverma998/vmoperator:v2
 ```
 
 **NOTE:** This image ought to be published in the personal registry you specified.
@@ -32,7 +55,7 @@ make install
 **Deploy the Manager to the cluster with the image specified by `IMG`:**
 
 ```sh
-make deploy IMG=<some-registry>/vmoperator:tag
+make deploy IMG=docker.io/ividyaverma998/vmoperator:v2 
 ```
 
 > **NOTE**: If you encounter RBAC errors, you may need to grant yourself cluster-admin
