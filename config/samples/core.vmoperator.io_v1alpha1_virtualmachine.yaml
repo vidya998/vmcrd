@@ -1,0 +1,16 @@
+apiVersion: core.vmoperator.io.core.vmoperator.io/v1alpha1
+kind: VirtualMachine
+metadata:
+  labels:
+    app.kubernetes.io/name: vmoperator
+    app.kubernetes.io/managed-by: kustomize
+  name: virtualmachine-sample
+spec:
+  cpu: 1
+  memory: 1
+  template: ami-e7527ed7
+  replicas: 1
+  hostOs: 1
+  machineType: t2.micro
+  region: us-west-2
+   

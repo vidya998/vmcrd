@@ -1,0 +1,105 @@
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.14.0
+  name: virtualmachines.core.vmoperator.io.core.vmoperator.io
+spec:
+  group: core.vmoperator.io.core.vmoperator.io
+  names:
+    kind: VirtualMachine
+    listKind: VirtualMachineList
+    plural: virtualmachines
+    singular: virtualmachine
+  scope: Namespaced
+  versions:
+  - name: v1alpha1
+    schema:
+      openAPIV3Schema:
+        description: VirtualMachine is the Schema for the virtualmachines API
+        properties:
+          apiVersion:
+            description: |-
+              APIVersion defines the versioned schema of this representation of an object.
+              Servers should convert recognized schemas to the latest internal value, and
+              may reject unrecognized values.
+              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+            type: string
+          kind:
+            description: |-
+              Kind is a string value representing the REST resource this object represents.
+              Servers may infer this from the endpoint the client submits requests to.
+              Cannot be updated.
+              In CamelCase.
+              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+            type: string
+          metadata:
+            type: object
+          spec:
+            description: VirtualMachineSpec defines the desired state of VirtualMachine
+            properties:
+              cpu:
+                format: int32
+                maximum: 100
+                minimum: 1
+                type: integer
+              hostOs:
+                format: int32
+                maximum: 100
+                minimum: 1
+                type: integer
+              machineType:
+                type: string
+              memory:
+                format: int32
+                maximum: 8
+                minimum: 1
+                type: integer
+              region:
+                type: string
+              replicas:
+                format: int32
+                maximum: 100
+                minimum: 1
+                type: integer
+              template:
+                type: string
+            required:
+            - cpu
+            - hostOs
+            - machineType
+            - memory
+            - region
+            - replicas
+            - template
+            type: object
+          status:
+            description: VirtualMachineStatus defines the observed state of VirtualMachine
+            properties:
+              currentReplicas:
+                format: int32
+                type: integer
+              desiredReplicas:
+                format: int32
+                type: integer
+              instanceId:
+                type: string
+              isErrorPhase:
+                type: string
+              isPendingPhase:
+                type: string
+              isRunningPhase:
+                type: string
+            required:
+            - currentReplicas
+            - desiredReplicas
+            - isErrorPhase
+            - isPendingPhase
+            - isRunningPhase
+            type: object
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}

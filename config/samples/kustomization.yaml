@@ -1,0 +1,4 @@
+## Append samples of your project ##
+resources:
+- core.vmoperator.io_v1alpha1_virtualmachine.yaml
+#+kubebuilder:scaffold:manifestskustomizesamples
