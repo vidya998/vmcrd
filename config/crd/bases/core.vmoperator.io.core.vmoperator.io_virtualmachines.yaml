@@ -49,6 +49,8 @@ spec:
                 maximum: 100
                 minimum: 1
                 type: integer
+              instanceName:
+                type: string
               machineType:
                 type: string
               memory:
@@ -68,6 +70,7 @@ spec:
             required:
             - cpu
             - hostOs
+            - instanceName
             - machineType
             - memory
             - region

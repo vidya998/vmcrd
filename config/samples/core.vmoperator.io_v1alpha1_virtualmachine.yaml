@@ -4,13 +4,14 @@ metadata:
   labels:
     app.kubernetes.io/name: vmoperator
     app.kubernetes.io/managed-by: kustomize
-  name: virtualmachine-sample
+  name: virtualmachine-vidya1
 spec:
   cpu: 1
   memory: 1
-  template: ami-e7527ed7
+  template: ami-0092a7ee6b8b2222a
   replicas: 1
   hostOs: 1
-  machineType: t2.micro
-  region: us-west-2
+  machineType: t4g.nano
+  region: us-east-1
+  instanceName: vidya-crd-vm
    

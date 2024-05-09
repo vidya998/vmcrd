@@ -46,6 +46,8 @@ type VirtualMachineSpec struct {
 	MachineType string `json:"machineType"`
 	// +kubebuilder:validation:Required
 	Region string `json:"region"`
+	// +kubebuilder:validation:Required
+	InstanceName string `json:"instanceName"`
 }
 
 // VirtualMachineStatus defines the observed state of VirtualMachine
