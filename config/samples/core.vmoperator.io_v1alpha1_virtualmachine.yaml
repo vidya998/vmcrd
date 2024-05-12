@@ -9,9 +9,11 @@ spec:
   cpu: 1
   memory: 1
   template: ami-0092a7ee6b8b2222a
-  replicas: 1
+  replicas: 2
   hostOs: 1
   machineType: t4g.nano
   region: us-east-1
-  instanceName: vidya-crd-vm
+  instanceName: vidya-crd-vm-testfinal
+
+
    
