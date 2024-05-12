@@ -19,7 +19,6 @@ package controller
 import (
 	"context"
 	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/aws/credentials"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/ec2"
 	corevmoperatoriov1alpha1 "github.com/kube-works/vmoperator.git/api/v1alpha1"
@@ -110,8 +109,7 @@ func (r *VirtualMachineReconciler) createEC2Instance(ctx context.Context, vm *co
 	log.Info("Creating a new Ec2 instance", "instance", "ec2")
 
 	sess, err := session.NewSession(&aws.Config{
-		Region:      aws.String(vm.Spec.Region),
-		Credentials: credentials.NewStaticCredentials("AKIA3HYEUERMNCFML6EK", "NyUziu7CQNh7jxoMq9yZKna8VoZSw/pYFs4Rr2tD", ""),
+		Region: aws.String(vm.Spec.Region),
 	})
 	if err != nil {
 		return err
